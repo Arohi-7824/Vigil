@@ -39,9 +39,14 @@ export default function Login({ setUser }) {
       }
 
     } catch (err) {
-      console.error(err);
-      alert("Invalid email or password");
-    }
+        console.error(err);
+
+        alert(
+          err.response?.data?.error ||
+          err.response?.data?.message ||
+          "Login failed"
+        );
+}
   };
 
   return (
