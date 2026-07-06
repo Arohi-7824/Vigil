@@ -92,11 +92,14 @@ exports.createRisk = async (req, res) => {
     }
 
     /* 🤖 AI CALL */
-    const aiResponse = await axios.post("http://localhost:5000/analyze", {
-      description: `${description} ${
-        imageInsight ? "Image context: " + imageInsight : ""
-      }`
-    });
+    const aiResponse = await axios.post(
+  `${process.env.AI_SERVICE_URL}/analyze`,
+  {
+    description: `${description} ${
+      imageInsight ? "Image context: " + imageInsight : ""
+    }`
+  }
+);
 
 
     let { risk_score, ai_summary, recommendations } = aiResponse.data;
